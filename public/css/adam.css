@@ -1,0 +1,33 @@
+.index-topSectionBackground{
+    background-color:deepskyblue;
+    height:200px;
+    text-align:center;
+    color:white;
+}
+
+.index-topSectionContainer{
+    position:absolute;
+    transform: translate(-50%,-50%);
+    top:50%;
+    left:50%;
+
+}
+
+.index-redBackground{
+    background-color:red;
+}
+
+body{
+    padding-top:50px;
+}
+
+.index-lowerBlock{
+    text-align:center;
+    padding: 50px;
+    padding-top:20px;
+}
+
+.index-icon{
+    font-size:75px;
+    padding:10px;
+}

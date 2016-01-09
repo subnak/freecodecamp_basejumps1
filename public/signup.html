@@ -35,32 +35,39 @@
             <div class="index-topSectionContainer">
                 <p style="font-size:50px;">Voteplex</p>
                 <p style="font-size:25px;">Create custom polls with live results.</p>
+                <button type="button" class="btn btn-success">First Button!</button>
             </div>
         </div>
         
-        <form role="form" ng-controller="LoginController as loginCtrl">
+        <form role="form" ng-controller="SignupController as signupCtrl">
+            <div class="container-fluid">
+                <span class="col-md-1"></span>
+                <div class="form-group col-md-10" style="padding-left:0">
+                    <label>Name </label>
+                    <input type="name" class="form-control" ng-model="signupCtrl.name" required>
+                    <label ng-show="signupCtrl.usernameAlreadyExists" style="color:red">Username already exists.</label>
+                </div>
+            </div>
             <div class="container-fluid">
                 <span class="col-md-1"></span>
                 <div class="form-group col-md-10" style="padding-left:0">
                     <label>Email: </label>
-                    <input type="email" class="form-control" id="email" required>
+                    <input type="email" class="form-control" ng-model="signupCtrl.email" required>
+                    <label ng-show="signupCtrl.emailAlreadyExists" style="color:red">Email already exists.</label>
                 </div>
             </div>
             <div class="container-fluid">
                 <span class="col-md-1"></span>
                 <div class="form-group col-md-10" style="padding-left:0">
                     <label>Password: </label>
-                    <input type="password" class="form-control" id="password" required>
+                    <input type="password" class="form-control" ng-model="signupCtrl.password" required>
                 </div>
             </div>
             <div class="container-fluid">
                 <span class="col-md-1"></span>
-                <input type="submit" class="btn btn-primary" ng-click="loginCtrl.login()" value="Login" />
-                <button type="button" class="btn btn-primary">Connect with Twitter <i class="fa fa-twitter"></i></button>                
+                <input type="submit"  class="btn btn-success" ng-click="signupCtrl.signup()" value="Sign Up!"/>
+                <button type="button" class="btn btn-success">Connect with Twitter <i class="fa fa-twitter"></i></button>                
             </div>
-            
-            {{loginCtrl.testvariable}}
-
             
         </form>
         
