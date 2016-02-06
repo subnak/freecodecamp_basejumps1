@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+
+<html>
+
+	<head>
+		<title>Voteplex - Vote for me!</title>
+		
+		<!-- Latest compiled and minified CSS -->
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+        <!--JQuery-->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+        
+        <!--Font Awesome-->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+
+		<!-- Latest compiled and minified JavaScript -->
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+	    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.0.4/angular.js">
+    	</script>
+    	<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.5.0-rc.0/angular.min.js"></script>
+		<script src="angularTest.js"></script>
+	    <link href="/public/css/adam.css" rel="stylesheet" type="text/css">
+	    <script type="text/javascript" src="https://www.google.com/jsapi"></script>
+	    <script src="/app/angularfunctionality.js"></script>
+	</head>
+
+	<body ng-app="mainModule" ng-controller="SplashController as splashCtrl" ng-init="splashCtrl.initializePolls('<%=JSON.stringify(registeredPolls)%>')">
+        <nav class="navbar navbar-default navbar-fixed-top">
+            <div class="container">
+                <a class="nav navbar-brand" href="/">Voteplex</a>
+                <a class="navbar-text navbar-left active" href="/">Home</a>
+                <a class="navbar-text navbar-right" href="/login">Login</a>
+                <a class="navbar-text navbar-right" href="/signup">Sign Up</a>
+            </div>
+        </nav>
+        <div class="index-topSectionBackground col-md-12 container">
+            <div class="index-topSectionContainer">
+                <p style="font-size:50px;">Voteplex</p>
+                <p style="font-size:25px;">Create custom polls with live results.</p>
+                <!--<button class="btn btn-danger" ng-click="splashCtrl.deleteAllRecords()">delete everything</button>-->
+            </div>
+        </div>
+        
+        <div class="container" style="text-align:center">
+    		<div class="col-md-4">
+    		    <h3>Current Active Polls:</h3>
+        		<button class="col-md-12 btn btn-default" ng-repeat="n in splashCtrl.polls track by $index" ng-click="splashCtrl.drawChart(n)">{{n.poll.name}}</button>
+    		</div>
+            
+            <div class="col-md-8">
+                <div id="chart_div" class="col-md-12"></div>
+                <button class="col-md-3 btn btn-default" ng-repeat="activeOption in splashCtrl.activeOptions track by $index" ng-click="splashCtrl.incrementVotes(activeOption)">{{activeOption}}</button>
+            </div>
+        </div>
+     
+        
+        
+        <!--<div class="col-md-4 index-lowerBlock">-->
+        <!--    <h1>-->
+        <!--        <i class="fa fa-bolt index-icon" style="color:gold;"></i>-->
+        <!--        <p>Live Results</p>-->
+        <!--    </h1>-->
+        <!--    Live graphs show your poll results immediately in an easy to understand format. One graph will not provide the whole picture, that's why we provide multiple graph types to better describe your results.-->
+        <!--</div>-->
+        <!--<div class="col-md-4 index-lowerBlock">-->
+        <!--    <h1>-->
+        <!--        <i class="fa fa-globe index-icon" style="color:green;"></i>-->
+        <!--        <p>Works Everywhere</p>-->
+        <!--    </h1>-->
+        <!--    Traditional desktop computers now represent only 30% of Internet traffic. Your poll must work on the tablets, smart phones, netbooks and notebooks that your visitors are using. Our responsive designs do just that-->
+        <!--</div>-->
+        <!--<div class="col-md-4 index-lowerBlock">-->
+        <!--    <h1>-->
+        <!--        <i class="fa fa-facebook index-icon" style="color:deepskyblue;"></i>-->
+        <!--        <p>Social Integration</p>-->
+        <!--    </h1>-->
+        <!--    Free integrated facebook or traditional comments allow your poll voters to provide immediate feedback and discuss results. Social share buttons encourage your poll voters to help spread the word.-->
+        <!--</div>-->
+        
+	</body>
+
+</html>

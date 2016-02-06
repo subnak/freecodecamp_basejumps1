@@ -1,0 +1,85 @@
+<!-- views/profile.ejs -->
+<!doctype html>
+<html>
+	<head>
+		<title>Voteplex - Vote for me!</title>
+		
+		<!-- Latest compiled and minified CSS -->
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+        <!--JQuery-->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+        
+        <!--Font Awesome-->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+
+		<!-- Latest compiled and minified JavaScript -->
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+	    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.0.4/angular.js">
+    	</script>
+    	<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.5.0-rc.0/angular.min.js"></script>
+		<script src="angularTest.js"></script>
+	    <link href="/public/css/adam.css" rel="stylesheet" type="text/css">
+	    <script type="text/javascript" src="https://www.google.com/jsapi"></script>
+	    <script src="/app/angularfunctionality.js"></script>
+
+	    
+	</head>
+<body ng-app="mainModule" ng-controller="ProfileController as profileCtrl" ng-init="profileCtrl.initializePolls('<%=JSON.stringify(polls)%>')" onload="parsePolls">
+	<script>
+		  function parsePolls(obj){
+		  	console.log(obj);
+		  }
+	</script>
+	
+	
+	
+	<nav class="navbar navbar-default navbar-fixed-top">
+	    <div class="container">
+	        <a class="nav navbar-brand" href="/">Voteplex</a>
+	        <a class="navbar-text navbar-left active" href="/">Home</a>
+	        <a class="navbar-text navbar-right" href="/login">Login</a>
+	        <a class="navbar-text navbar-right" href="/signup">Sign Up</a>
+	    </div>
+	</nav>
+	<div class="index-topSectionBackground col-md-12 container">
+	    <div class="index-topSectionContainer">
+	        <p style="font-size:50px;">Dashboard</p>
+	        <p style="font-size:25px;">What would you like to do today?</p>
+	        <button class="btn btn-warning btn-lg" style="margin:15px" ng-show = profileCtrl.lookingAtMyPolls ng-click=profileCtrl.toggleLookingAtMyPolls()>New Poll</button>
+	        <button class="btn btn-warning btn-lg" style="margin:15px" ng-show = !profileCtrl.lookingAtMyPolls ng-click=profileCtrl.toggleLookingAtMyPolls()>My Polls</button>
+	    </div>
+	</div>
+	
+	<div class="container">
+		<span class="col-md-4"></span>
+		<div class="col-md-4" style="text-align:center">
+			<form ng-show=!profileCtrl.lookingAtMyPolls>
+				<h1>New Poll</h1>
+				<p>Name your poll</p>
+				<input type="text" class="form-control" name="email" ng-model="profileCtrl.pollTitle">
+				<br/>
+				<p>Options</p>
+				<div ng-repeat="n in profileCtrl.numOptions track by $index">
+					<input type="text" class="form-control" ng-model="profileCtrl.options[$index]" required>
+				</div>
+				<button class="btn btn-warning btn-lg" style="margin:15px" ng-click="profileCtrl.moreOptions()">More Options</button> <br/>
+				<button type="submit" class="btn btn-warning btn-lg" ng-click="profileCtrl.saveOptions()">Submit</button>
+			</form>
+		</div>
+	</div>
+	
+	<div class="container">
+		<div class="col-md-4">
+			<div ng-show=profileCtrl.lookingAtMyPolls ng-repeat="poll in profileCtrl.polls track by $index">
+				<button class="col-md-9 btn btn-default" ng-click="profileCtrl.drawChart(poll)">{{poll.name}}</button>
+				<button class="col-md-3 btn btn-danger" ng-show=true ng-click="profileCtrl.deletePoll(poll)">Delete</button>
+			</div>
+		</div>
+		<div class="col-md-8" id="chart_div" ></div>
+	</div>
+
+</div>
+</body>
+
+
+</html>
